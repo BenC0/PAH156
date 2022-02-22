@@ -23,7 +23,7 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 				'variation': variant,
 			}
 		}
-        log(config.id, {
+        log({
             "type": "Event pushed to dataLayer",
             eventObject
         })
