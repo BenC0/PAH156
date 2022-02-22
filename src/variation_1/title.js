@@ -41,6 +41,24 @@ export function get_title() {
     }
 }
 
+export function get_reviews() {
+    let rating_stars_selector = ".pr-snippet-rating-decimal"
+    let reviews_number_selector = ".pr-category-snippet__total"
+    if(norman.core.elementManagement.exists(rating_stars_selector) && norman.core.elementManagement.exists(reviews_number_selector)) {
+        let rating_stars = norman.core.elementManagement.get(rating_stars_selector)
+        let reviews_number = norman.core.elementManagement.get(reviews_number_selector)
+        return {
+            rating: rating_stars.textContent.trim(),
+            number: reviews_number.textContent.trim(),
+        }
+    } else {
+        return {
+            rating: "0",
+            number: "0",
+        }
+    }
+}
+
 export const title = {
     get_title,
     build_title,
