@@ -36,6 +36,8 @@ export function get_title() {
     let title_selector = ".pdp-heading-ratings__title"
     if(norman.core.elementManagement.exists(title_selector)) {
         return norman.core.elementManagement.get(title_selector).textContent.trim()
+    } else {
+        return ""
     }
 }
 
