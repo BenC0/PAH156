@@ -25,7 +25,7 @@ function get_details() {
         title: title.get_title(),
         brand: title.get_brand(),
         reviews: title.get_reviews(),
-        prices: prices.get_prices(),
+        prices: price.get_prices(),
     }
 }
 

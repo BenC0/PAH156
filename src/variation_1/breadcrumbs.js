@@ -1,3 +1,5 @@
+import norman from "../norman/index.js"
+
 export function build_crumb(crumb) {
     norman.core.log(`Building breadcrumb`)
     return `<a href="${crumb.link}" class="crumb">${crumb.text}</a>`

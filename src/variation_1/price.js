@@ -16,7 +16,8 @@ export function build_price(prices) {
 export function check_and_get_price(selector) {
     norman.core.log(`Checking and getting ${selector}`)
     if (norman.core.elementManagement.exists(selector)) {
-        return norman.core.elementManagement.get(selector).textContent.trim()
+        let el = norman.core.elementManagement.get(selector).pop()
+        return el.textContent.trim()
     } else {
         return ""
     }

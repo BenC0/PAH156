@@ -39,7 +39,8 @@ export function get_title() {
     norman.core.log(`Getting product title`)
     let title_selector = ".pdp-heading-ratings__title"
     if(norman.core.elementManagement.exists(title_selector)) {
-        return norman.core.elementManagement.get(title_selector).textContent.trim()
+        let el = norman.core.elementManagement.get(title_selector).pop()
+        return el.textContent.trim()
     } else {
         return ""
     }
@@ -50,8 +51,8 @@ export function get_reviews() {
     let rating_stars_selector = ".pr-snippet-rating-decimal"
     let reviews_number_selector = ".pr-category-snippet__total"
     if(norman.core.elementManagement.exists(rating_stars_selector) && norman.core.elementManagement.exists(reviews_number_selector)) {
-        let rating_stars = norman.core.elementManagement.get(rating_stars_selector)
-        let reviews_number = norman.core.elementManagement.get(reviews_number_selector)
+        let rating_stars = norman.core.elementManagement.get(rating_stars_selector).pop()
+        let reviews_number = norman.core.elementManagement.get(reviews_number_selector).pop()
         return {
             rating: rating_stars.textContent.trim(),
             number: reviews_number.textContent.trim(),
