@@ -23,8 +23,8 @@ export function build_title(title) {
 }
 
 export function build_title_and_reviews(details) {
-    let title = build_title(detials.title)
-    let reviews = build_reviews(detials.reviews)
+    let title = build_title(details.title)
+    let reviews = build_reviews(details.reviews)
     return `<div class="pah156-title-container">
         ${title}
         ${reviews}
