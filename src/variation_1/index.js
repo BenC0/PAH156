@@ -1,8 +1,15 @@
 import variationCSS from "./index.css";
 import norman from "../norman/index.js"
+import breadcrumbs from "./breadcrumbs.js";
+import gallery from "./gallery.js";
 
-function move_title() {
-
+function build_template(details) {
+    let breadcrumbs_html = breadcrumbs.build_breadcrumbs(details.crumbs)
+    let gallery_html = gallery.build_gallery(details.images)
+    return `<div class="pah156-layout-pdp">
+        ${breadcrumbs_html}
+        ${gallery_html}
+    </div>`
 }
 
 function init() {
