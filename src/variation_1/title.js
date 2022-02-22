@@ -47,3 +47,5 @@ export const title = {
     build_reviews,
     build_title_and_reviews,
 }
+
+export default title
