@@ -25,6 +25,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-nesting": "^10.1.2",
     "postcss-partial-import": "^4.1.0",
+    "slick-carousel": "^1.8.1",
     "style-loader": "^3.3.1",
     "svg-inline-loader": "^0.8.2",
     "webpack": "^5.69.0"
