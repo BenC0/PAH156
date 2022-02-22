@@ -1,9 +1,31 @@
 .pah .pah156_loaded,
 body.pah156_loaded {
     & .pah156-layout-pdp {
+        --slide-size: 160px;
+        
         display: flex;
+        font-size: 1rem;
+        padding: 1em;
         align-items: center;
         flex-direction: column;
+        
+        & .swiper-wrapper {
+            display: grid;
+            grid-template-rows: var(--slide-size);
+            grid-template-columns: repeat(var(--slide-size), auto);
+
+            width: var(--slide-size);
+            height: var(--slide-size);
+
+            & .swiper-slide {
+                grid-row: 1;
+                transition: opacity 500ms;
+
+                &:not(.swiper-slide-active) {
+                    opacity: 0;
+                }
+            }
+        }
 
         & + .layout-pdp {
             display: none;

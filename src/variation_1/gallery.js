@@ -2,14 +2,16 @@ import norman from "../norman"
 
 export function build_image_str(img) {
     norman.core.log(`Building new product image element`)
-    return `<img src="${img.src}" alt="${img.alt}">`
+    return `<img src="${img.src}" alt="${img.alt}" class="swiper-slide">`
 }
 
 export function build_gallery(images) {
     norman.core.log(`Building new product image gallery element`)
     let htmlStr = ``
     images.forEach(img => htmlStr += build_image_str(img))
-    return `<div class="pah156-image-gallery">${htmlStr}</div>`
+    return `<div class="pah156-image-gallery">
+        <div class="swiper-wrapper"> ${htmlStr} </div>
+    </div>`
 }
 
 export function get_images() {
@@ -28,8 +30,19 @@ export function get_images() {
     }
 }
 
+export function init_swiper() {
+    let gallery_container_selector = ".pah156-image-gallery"
+    norman.core.log(`Initialising Swiper on ${gallery_container_selector}`)
+    return new Swiper(gallery_container_selector, {
+        speed: 500,
+        spaceBetween: 10,
+        createElements: true,
+    });
+}
+
 export const gallery = {
     get_images,
+    init_swiper,
     build_gallery,
     build_image_str,
 }

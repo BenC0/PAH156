@@ -50,6 +50,7 @@ function init() {
     if(norman.core.elementManagement.exists(targetSel)) {
         norman.core.log(`Inserting template "${meth}" "${targetSel}"`)
         norman.core.elementManagement.add(element, meth, targetSel)
+        gallery.init_swiper()
     }
 }
 
