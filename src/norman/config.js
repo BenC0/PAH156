@@ -4,7 +4,7 @@ export const config = {
     "id": "pah156",
     "tracking": {
         "google_analytics": {
-            "dimension": false
+            "dimension": 22
         }
     },
     "conditions": _ => {
