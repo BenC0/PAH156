@@ -6,7 +6,7 @@ import config from "../../config.js"
  * @returns {object} Returns the stored test from the window.norman object
  */
 export default function registerTest(variant, extraDetails = {}) {
-	testID = config.id
+	let testID = config.id
 	for (const property in extraDetails) {
 		config[property] = extraDetails[property]
 	}
