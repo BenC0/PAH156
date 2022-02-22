@@ -15,11 +15,11 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 			'eventLabel': `${config.id}-${variant}`,
 		}
 
-		if (impressionEvent !== false && config.customDimension !== "") {
+		if (impressionEvent !== false && config.tracking.google_analytics.dimension !== "") {
 			eventObject = {
 				'event': 'CRO_Test_Impression',
 				'testID': config.id,
-				'dimension': config.customDimension,
+				'dimension': config.tracking.google_analytics.dimension,
 				'variation': variant,
 			}
 		}
