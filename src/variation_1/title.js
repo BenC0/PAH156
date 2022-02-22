@@ -61,6 +61,7 @@ export function get_reviews() {
 
 export const title = {
     get_title,
+    get_reviews,
     build_title,
     build_reviews,
     build_title_and_reviews,
