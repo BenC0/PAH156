@@ -59,7 +59,12 @@ export function get_reviews() {
     }
 }
 
+export function get_brand() {
+    return !!window.googleFirstBasketItemImpression ? window.googleFirstBasketItemImpression.brand || "" : ""
+}
+
 export const title = {
+    get_brand,
     get_title,
     get_reviews,
     build_title,
