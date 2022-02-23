@@ -31,8 +31,11 @@ body.pah156_loaded {
         }
 
         & .pah156-title-container {
+            margin: 1.2em 0;
+            
             & .pah156-title {
                 font-size: 1em;
+                margin-bottom: 0.6em;
             }
 
             & .pah156-reviews {
