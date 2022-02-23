@@ -1,8 +1,7 @@
 # TODO
-1. Dynamic ratings update to prevent waiting on ratings to exist before actioning variation.
-2. Investigate image zoom
-3. Test and adjust for easy repeat products
-4. Test and adjust for sales products
+1. Investigate image zoom
+2. Test and adjust for easy repeat products
+3. Test and adjust for sales products
 
 Standard Product - https://www.petsathome.com/shop/en/pets/wainwrights-complete-dry-puppy-food-lamb-and-brown-rice-2kg
 

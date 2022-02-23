@@ -15,7 +15,7 @@ export function build_reviews(reviews, brand = "") {
                 ${star_svg}
                 ${star_svg}
             </div>
-            <div class="amount">(${reviews.number})</div>
+            <div class="amount">${reviews.number}</div>
         </div>
     </div>`
 }
@@ -48,6 +48,27 @@ export function get_title() {
     }
 }
 
+export function watch_reviews() {
+    let reviews_wrapper_selector = `[onclick="ui.scrollTo('#pr-review-snapshot');"] .pwr-pdp-wrapper`
+    if(norman.core.elementManagement.exists(reviews_wrapper_selector)) {
+        let reviews_wrapper = norman.core.elementManagement.get(reviews_wrapper_selector).pop()
+        norman.utils.watchForChange(reviews_wrapper, update_reviews, { childList: true, attributes: true, subtree: true}, "pah156_reviews_observer")
+    }
+}
+
+export function update_reviews() {
+    norman.core.log(`Updating product reviews`)
+    let reviews = get_reviews()
+    let rating_stars_selector = ".pah156-reviews-rating .stars"
+    let reviews_number_selector = ".pah156-reviews-rating .amount"
+    if(norman.core.elementManagement.exists(rating_stars_selector) && norman.core.elementManagement.exists(reviews_number_selector)) {
+        let rating_stars = norman.core.elementManagement.get(rating_stars_selector).pop()
+        let reviews_number = norman.core.elementManagement.get(reviews_number_selector).pop()
+        rating_stars.setAttribute("score", reviews.rating)
+        reviews_number.textContent = reviews.number
+    }
+}
+
 export function get_reviews() {
     norman.core.log(`Getting product reviews`)
     let rating_stars_selector = ".pr-snippet-rating-decimal"
@@ -57,12 +78,13 @@ export function get_reviews() {
         let reviews_number = norman.core.elementManagement.get(reviews_number_selector).pop()
         return {
             rating: rating_stars.textContent.trim(),
-            number: reviews_number.textContent.replace(/[a-z]|[A-Z]/g, "").trim(),
+            number: `(${reviews_number.textContent.replace(/[a-z]|[A-Z]/g, "").trim()})`,
         }
     } else {
+        norman.core.log(`Product reviews don't exist, returning default`)
         return {
             rating: "0",
-            number: "0",
+            number: "(0)",
         }
     }
 }
@@ -76,6 +98,7 @@ export const title = {
     get_brand,
     get_title,
     get_reviews,
+    watch_reviews,
     build_title,
     build_reviews,
     build_title_and_reviews,
