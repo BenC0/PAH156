@@ -8,7 +8,7 @@ import title from "./title.js";
 function build_template(details) {
     let breadcrumbs_html = breadcrumbs.build_breadcrumbs(details.crumbs)
     let gallery_html = gallery.build_gallery(details.images)
-    let title_html = `<h1 class="pah156-title">${details.title}</h1>`
+    let title_html = title.build_title_and_reviews(details)
     let price_html = price.build_price(details.prices)
     return `<div class="pah156-layout-pdp">
         ${breadcrumbs_html}
