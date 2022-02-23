@@ -22,6 +22,8 @@ export function build_reviews(reviews, brand = "") {
 
 export function build_title(title) {
     norman.core.log(`Building new product title element`)
+    title = title.toLowerCase()
+    title = title.charAt(0).toUpperCase() + title.slice(1)
     return `<h1 class="pah156-title">${title}</h1>`
 }
 
