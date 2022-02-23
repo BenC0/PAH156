@@ -35,23 +35,34 @@ body.pah156_loaded {
             
             & .pah156-title {
                 font-size: 1em;
+                line-height: 1.33;
                 margin-bottom: 0.6em;
             }
-
+            
             & .pah156-reviews {
+                display: flex;
                 font-size: .8em;
-                &,
-                & .pah156-reviews-rating {
-                    display: flex;
-                }
+                align-items: center;
             }
         }
 
         & .pah156-reviews-rating {
+            display: flex;
+            margin-left: 0.4em;
+
             & .stars {
-                & svg path {
-                    fill: #14B65A;
-                }
+                display: flex;
+                margin-right: 0.2em;
+
+                & svg { 
+                    &:not(:last-child) {
+                        margin-right: 0.2em;
+                    }
+
+                    & path {
+                        fill: #14B65A;
+                    }
+                } 
 
                 &[score="4"] svg:nth-child(4) ~ svg path,
                 &[score="3"] svg:nth-child(3) ~ svg path,
@@ -60,6 +71,58 @@ body.pah156_loaded {
                 &[score="0"] svg path {
                     fill: #737373;
                 }
+            }
+
+            & .amount {
+                color: #0D754F;
+            }
+        }
+
+        & .pah156-price {
+            width: 100%;
+            font-size: 1.6em;
+
+            display: grid;
+            grid-row-gap: .25em;
+            grid-column-gap: .25em;
+            grid-template-rows: repeat(2, auto);
+            grid-template-columns: repeat(3, auto);
+
+            & .saving {
+                grid-row: 1;
+                grid-column: 1 / span 3;
+                
+                &:empty {
+                    display: none;
+                }
+            }
+
+            & .now,
+            & .was,
+            & .normalised {
+                grid-row: 2;
+            }
+            & .now {
+                font-size: 1em;
+                grid-column: 1;
+                font-weight: bold;
+            }
+            
+            & .was {
+                grid-column: 2;
+                color: #B2B2B2;
+                font-size: .625em;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            & .normalised {
+                color: #737373;
+                grid-column: 3;
+                font-size: 0.5em;
+                display: inline-flex;
+                align-items: flex-end;
+                justify-content: flex-end;
             }
         }
 
