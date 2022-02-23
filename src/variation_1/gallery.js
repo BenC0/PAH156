@@ -11,6 +11,9 @@ export function build_gallery(images) {
     images.forEach(img => htmlStr += build_image_str(img))
     return `<div class="pah156-image-gallery">
         <div class="swiper-wrapper"> ${htmlStr} </div>
+        <div class="pah156-progress-bar">
+            <div class="indicator"></div>
+        </div>
     </div>`
 }
 
@@ -30,14 +33,68 @@ export function get_images() {
     }
 }
 
+export function update_progress_bar() {
+    let indicator_selector = ".pah156-progress-bar .indicator"
+    let wrapper_selector = ".pah156-image-gallery .swiper-wrapper"
+    let slide_selector = ".pah156-image-gallery .swiper-wrapper .swiper-slide"
+    if (norman.core.elementManagement.exists(indicator_selector)
+    && norman.core.elementManagement.exists(wrapper_selector)
+    && norman.core.elementManagement.exists(slide_selector)
+    ) {
+        let slides = norman.core.elementManagement.get(slide_selector, true)
+        let last_slide = slides.pop()
+
+        let first_slide = slides[0]
+        let slide_width = first_slide.style.width
+        slide_width = slide_width.replace(/[a-z]/, "")
+        slide_width = parseFloat(slide_width)
+        
+        let slide_gap = first_slide.style.marginRight
+        slide_gap = slide_gap.replace(/[a-z]/, "")
+        slide_gap = parseFloat(slide_gap)
+        
+        let total_slide_width = slide_width + slide_gap
+        let max_width = total_slide_width * slides.length
+
+        let wrapper = norman.core.elementManagement.get(wrapper_selector).pop()
+        let wrapper_transform = wrapper.style.transform
+        let wrapper_transform_values = wrapper_transform.match(/[0-9]*px/g)
+        let wrapper_transform_x = wrapper_transform_values[0]
+        wrapper_transform_x = wrapper_transform_x.replace(/[a-z]/g, '')
+        let current_offset = parseFloat(wrapper_transform_x)
+
+        if (current_offset <= 0) {
+            current_offset = total_slide_width / 10
+        }
+
+        let indicator = norman.core.elementManagement.get(indicator_selector).pop()
+        indicator.style.width = `${(current_offset/max_width) * 100}%`
+
+        norman.core.log({
+            msg: `updating indicator width to ${indicator.style.width}`,
+            slide_gap,
+            slide_width,
+            max_width,
+            total_slide_width,
+            current_offset,
+        })
+    }
+}
+
 export function init_swiper() {
     let gallery_container_selector = ".pah156-image-gallery"
     norman.core.log(`Initialising Swiper on ${gallery_container_selector}`)
-    return new Swiper(gallery_container_selector, {
+    let g = new Swiper(gallery_container_selector, {
         speed: 500,
         spaceBetween: 10,
         createElements: true,
+        on: {
+            // sliderMove: update_progress_bar,
+            slideChange: update_progress_bar,
+        }
     });
+    update_progress_bar()
+    return g
 }
 
 export const gallery = {

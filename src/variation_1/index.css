@@ -1,8 +1,6 @@
 .pah .pah156_loaded,
 body.pah156_loaded {
     & .pah156-layout-pdp {
-        --slide-size: 160px;
-        
         padding: .8em;
         color: #2A2A2A;
         font-size: 20px;
@@ -12,21 +10,39 @@ body.pah156_loaded {
         display: flex;
         align-items: center;
         flex-direction: column;
-        
-        & .swiper-wrapper {
-            display: grid;
-            grid-template-rows: var(--slide-size);
-            grid-template-columns: repeat(var(--slide-size), auto);
 
-            width: var(--slide-size);
-            height: var(--slide-size);
+        & .pah156-image-gallery {
+            --slide-size: 160px;
 
-            & .swiper-slide {
-                grid-row: 1;
-                transition: opacity 500ms;
+            & .swiper-wrapper {
+                display: grid;
+                width: var(--slide-size);
+                grid-template-rows: var(--slide-size);
+                grid-template-columns: repeat(var(--slide-size), auto);
+                
+                & .swiper-slide {
+                    grid-row: 1;
+                    transition: opacity 500ms;
+                    
+                    &:not(.swiper-slide-active) {
+                        opacity: 0;
+                    }
+                }
+            }
 
-                &:not(.swiper-slide-active) {
-                    opacity: 0;
+            & .pah156-progress-bar {
+                --indicator-height: 4px;
+
+                margin-top: 1em;
+                background: #E3E3E3;
+                width: var(--slide-size);
+                height: var(--indicator-height);
+
+                & .indicator {
+                    max-width: 100%;
+                    background: #14B65A;
+                    transition: width .35s cubic-bezier(0.57, -0.01, 0.29, 1.46);
+                    height: var(--indicator-height);
                 }
             }
         }
