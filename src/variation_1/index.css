@@ -1,6 +1,9 @@
 .pah .pah156_loaded,
 body.pah156_loaded {
     & .pah156-layout-pdp {
+        --dark-green: #00551c;
+        --green: #54b947;
+
         padding: .8em;
         color: #2A2A2A;
         font-size: 20px;
@@ -40,9 +43,9 @@ body.pah156_loaded {
 
                 & .indicator {
                     max-width: 100%;
-                    background: #14B65A;
-                    transition: width .35s cubic-bezier(0.57, -0.01, 0.29, 1.46);
+                    background: var(--green);
                     height: var(--indicator-height);
+                    transition: width .35s cubic-bezier(0.57, -0.01, 0.29, 1.46);
                 }
             }
         }
@@ -77,7 +80,7 @@ body.pah156_loaded {
                     }
 
                     & path {
-                        fill: #14B65A;
+                        fill: var(--green);
                     }
                 } 
 
@@ -91,7 +94,7 @@ body.pah156_loaded {
             }
 
             & .amount {
-                color: #0D754F;
+                color: var(--dark-green);
                 font-weight: bold;
                 transform: translateY(0.1em);
             }
