@@ -3,9 +3,12 @@ body.pah156_loaded {
     & .pah156-layout-pdp {
         --slide-size: 160px;
         
+        padding: .8em;
+        color: #2A2A2A;
+        font-size: 20px;
+        font-family: "Museo", sans-serif;
+        
         display: flex;
-        font-size: 1rem;
-        padding: 1em;
         align-items: center;
         flex-direction: column;
         
@@ -23,6 +26,36 @@ body.pah156_loaded {
 
                 &:not(.swiper-slide-active) {
                     opacity: 0;
+                }
+            }
+        }
+
+        & .pah156-title-container {
+            & .pah156-title {
+                font-size: 1em;
+            }
+
+            & .pah156-reviews {
+                font-size: .8em;
+                &,
+                & .pah156-reviews-rating {
+                    display: flex;
+                }
+            }
+        }
+
+        & .pah156-reviews-rating {
+            & .stars {
+                & svg path {
+                    fill: #14B65A;
+                }
+
+                &[score="4"] svg:nth-child(4) ~ svg path,
+                &[score="3"] svg:nth-child(3) ~ svg path,
+                &[score="2"] svg:nth-child(2) ~ svg path,
+                &[score="1"] svg:nth-child(1) ~ svg path,
+                &[score="0"] svg path {
+                    fill: #737373;
                 }
             }
         }
