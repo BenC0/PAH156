@@ -17,7 +17,7 @@ export function check_and_get_price(selector) {
     norman.core.log(`Checking and getting ${selector}`)
     if (norman.core.elementManagement.exists(selector)) {
         let el = norman.core.elementManagement.get(selector).pop()
-        return el.textContent.trim()
+        return el.textContent.replace(/\(|\)/g, "").trim()
     } else {
         return ""
     }

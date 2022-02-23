@@ -6,6 +6,7 @@ body.pah156_loaded {
         padding: .8em;
         color: #2A2A2A;
         font-size: 20px;
+        background: #fff;
         font-family: "Museo", sans-serif;
         
         display: flex;
@@ -75,6 +76,8 @@ body.pah156_loaded {
 
             & .amount {
                 color: #0D754F;
+                font-weight: bold;
+                transform: translateY(0.1em);
             }
         }
 
