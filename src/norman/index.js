@@ -31,16 +31,11 @@ export function init(Variant) {
 	let run = () => {
 		console.log("Test Poll Start")
 		console.timeLog("Variation 1 Run Time")
-		poll(config.conditions, _ => {
-			console.log("Test Poll Complete")
+		poll(Variant.conditions, _ => {
+			console.log("Variant Poll Complete")
 			console.timeLog("Variation 1 Run Time")
-			console.log("Variant Poll Start")
-			poll(Variant.conditions, _ => {
-				console.log("Variant Poll Complete")
-				console.timeLog("Variation 1 Run Time")
-				document.body.classList.add(`${id}_loaded`)
-				Variant.actions()
-			})
+			document.body.classList.add(`${id}_loaded`)
+			Variant.actions()
 		})
 	}
 	return {

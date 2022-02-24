@@ -25,12 +25,11 @@ export function getAll(selector) {
 
 /**
  * Checks if element exists
- * @param {string|Node} target 
+ * @param {string} target CSS Selector for element 
  * @returns {boolean} Returns true if exists, false if not.
  */
 export function exists(target) {
-	target = typeof target === "string" ?  document.querySelector(target) : target
-	return !!target
+	return !!document.querySelector(target)
 }
 
 /**

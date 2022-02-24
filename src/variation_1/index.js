@@ -68,6 +68,13 @@ const Variant = {
     conditions: () => {
         console.log("Variation condition check")
         console.timeLog("Variation 1 Run Time")
+        console.time("norman exists test")
+        let a = norman.core.elementManagement.exists(`.pdp-heading-ratings__title`)
+        console.timeEnd("norman exists test")
+        console.time("doc.qs exists test")
+        let b = !!document.querySelector(`.pdp-heading-ratings__title`)
+        console.timeEnd("doc.qs exists test")
+        console.log(a, b)
         let conditions = []
         // Check for product title
         conditions.push(norman.core.elementManagement.exists(`.pdp-heading-ratings__title`))
@@ -83,5 +90,9 @@ const Variant = {
     actions: init,
 }
 
+console.log("Norman Initialised")
+console.timeLog("Variation 1 Run Time")
 let nVariant = norman.init(Variant)
+console.log("nVariant.run()")
+console.timeLog("Variation 1 Run Time")
 nVariant.run()

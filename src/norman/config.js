@@ -6,8 +6,7 @@ export const config = {
         "google_analytics": {
             "dimension": 22
         }
-    },
-    "conditions": true
+    }
 }
 
 export default config
