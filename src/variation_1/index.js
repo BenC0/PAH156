@@ -30,6 +30,8 @@ function get_details() {
 }
 
 function init() {
+    console.timeLog("Variation 1 Run Time")
+    console.log("Variation action start")
     norman.core.log("Variation 1")
     norman.core.track(Variant.name, "Loaded", true)
     norman.core.log("Getting details")
@@ -53,12 +55,19 @@ function init() {
         gallery.init_swiper()
         title.watch_reviews()
     }
+    console.log("Variation action complete")
+    console.timeEnd("Variation 1 Run Time")
 }
 
+console.log("Time Start")
+console.time("Variation 1 Run Time")
+console.timeLog("Variation 1 Run Time")
 const Variant = {
     name: "Variation 1",
     css: variationCSS,
     conditions: () => {
+        console.log("Variation condition check")
+        console.timeLog("Variation 1 Run Time")
         let conditions = []
         // Check for product title
         conditions.push(norman.core.elementManagement.exists(`.pdp-heading-ratings__title`))
