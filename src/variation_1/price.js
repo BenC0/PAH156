@@ -1,7 +1,7 @@
-import norman from "../norman"
+import {elementManagement, log} from "../norman"
 
 export function build_price(prices) {
-    norman.core.log({
+    log({
         msg: "Building prices from object",
         prices
     })
@@ -14,9 +14,9 @@ export function build_price(prices) {
 }
 
 export function check_and_get_price(selector) {
-    norman.core.log(`Checking and getting ${selector}`)
-    if (norman.core.elementManagement.exists(selector)) {
-        let el = norman.core.elementManagement.get(selector).pop()
+    log(`Checking and getting ${selector}`)
+    if (elementManagement.exists(selector)) {
+        let el = elementManagement.get(selector).pop()
         return el.textContent.replace(/\(|\)/g, "").trim()
     } else {
         return ""
@@ -24,18 +24,18 @@ export function check_and_get_price(selector) {
 }
 
 export function get_type() {
-    norman.core.log(`Getting product type`)
+    log(`Getting product type`)
     let type = "one-time-purchase"
-    if (norman.core.elementManagement.exists("#checkout-combo__offer-text-er")) {
+    if (elementManagement.exists("#checkout-combo__offer-text-er")) {
         type = "easy-repeat"
-    } else if (norman.core.elementManagement.exists(".pdp-offer-text__inner")) {
+    } else if (elementManagement.exists(".pdp-offer-text__inner")) {
         type = "sale"
     }
     return type
 }
 
 export function get_prices() {
-    norman.core.log(`Getting product prices`)
+    log(`Getting product prices`)
     let prices = {
         type: get_type(),
         now: check_and_get_price("#offerPrice"),

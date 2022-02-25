@@ -20,8 +20,6 @@ import getHighestZIndex from './norman_modules/utils/getHighestZIndex.js';
  * @returns {Object} Test ID, test details and run function to poll for test & variant conditions before running variant actions
  */
 export function init(Variant) {
-	console.log("Test Registered")
-	console.timeLog("Variation 1 Run Time")
 	let test = registerTest(Variant.name, {
 		css: Variant.css,
 		actions: Variant.actions,
@@ -29,14 +27,10 @@ export function init(Variant) {
 	})
 	let id = config.id
 	let run = () => {
-		console.log("Test Poll Start")
-		console.timeLog("Variation 1 Run Time")
 		poll(Variant.conditions, _ => {
-			console.log("Variant Poll Complete")
-			console.timeLog("Variation 1 Run Time")
 			document.body.classList.add(`${id}_loaded`)
 			Variant.actions()
-		})
+		}, 0.5)
 	}
 	return {
 		id,
@@ -70,3 +64,17 @@ export const norman = {
 }
 
 export default norman 
+
+export {
+	log,
+	poll,
+	track,
+	cookie,
+	debounce,
+	isInViewport,
+	registerTest,
+	onMouseLeave,
+	watchForChange,
+	getHighestZIndex,
+	elementManagement,
+}

@@ -1,12 +1,12 @@
-import norman from "../norman"
+import {log, elementManagement} from "../norman"
 
 export function build_image_str(img) {
-    norman.core.log(`Building new product image element`)
+    log(`Building new product image element`)
     return `<img src="${img.src}" alt="${img.alt}" class="swiper-slide">`
 }
 
 export function build_gallery(images) {
-    norman.core.log(`Building new product image gallery element`)
+    log(`Building new product image gallery element`)
     let htmlStr = ``
     images.forEach(img => htmlStr += build_image_str(img))
     return `<div class="pah156-image-gallery">
@@ -18,10 +18,10 @@ export function build_gallery(images) {
 }
 
 export function get_images() {
-    norman.core.log(`Getting product images`)
+    log(`Getting product images`)
     let images_selector = "#pdp-full-image"
-    if(norman.core.elementManagement.exists(images_selector)) {
-        let image_els = norman.core.elementManagement.getAll(images_selector)
+    if(elementManagement.exists(images_selector)) {
+        let image_els = elementManagement.getAll(images_selector)
         let images = []
         image_els.forEach((el, ind) => images.push({
             src: el.getAttribute("src"),
@@ -37,11 +37,11 @@ export function update_progress_bar() {
     let indicator_selector = ".pah156-progress-bar .indicator"
     let wrapper_selector = ".pah156-image-gallery .swiper-wrapper"
     let slide_selector = ".pah156-image-gallery .swiper-wrapper .swiper-slide"
-    if (norman.core.elementManagement.exists(indicator_selector)
-    && norman.core.elementManagement.exists(wrapper_selector)
-    && norman.core.elementManagement.exists(slide_selector)
+    if (elementManagement.exists(indicator_selector)
+    && elementManagement.exists(wrapper_selector)
+    && elementManagement.exists(slide_selector)
     ) {
-        let slides = norman.core.elementManagement.get(slide_selector, true)
+        let slides = elementManagement.get(slide_selector, true)
         let last_slide = slides.pop()
 
         let first_slide = slides[0]
@@ -56,7 +56,7 @@ export function update_progress_bar() {
         let total_slide_width = slide_width + slide_gap
         let max_width = total_slide_width * slides.length
 
-        let wrapper = norman.core.elementManagement.get(wrapper_selector).pop()
+        let wrapper = elementManagement.get(wrapper_selector).pop()
         let wrapper_transform = wrapper.style.transform
         let wrapper_transform_values = wrapper_transform.match(/[0-9]*px/g)
         let wrapper_transform_x = wrapper_transform_values[0]
@@ -67,10 +67,10 @@ export function update_progress_bar() {
             current_offset = total_slide_width / 10
         }
 
-        let indicator = norman.core.elementManagement.get(indicator_selector).pop()
+        let indicator = elementManagement.get(indicator_selector).pop()
         indicator.style.width = `${(current_offset/max_width) * 100}%`
 
-        norman.core.log({
+        log({
             msg: `updating indicator width to ${indicator.style.width}`,
             slide_gap,
             slide_width,
@@ -83,7 +83,7 @@ export function update_progress_bar() {
 
 export function init_swiper() {
     let gallery_container_selector = ".pah156-image-gallery"
-    norman.core.log(`Initialising Swiper on ${gallery_container_selector}`)
+    log(`Initialising Swiper on ${gallery_container_selector}`)
     let g = new Swiper(gallery_container_selector, {
         speed: 500,
         spaceBetween: 10,

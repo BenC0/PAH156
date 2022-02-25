@@ -1,17 +1,14 @@
 import variationCSS from "./index.css";
-import norman from "../norman/index.js"
-import breadcrumbs from "./breadcrumbs.js";
+import {init, log, track, elementManagement} from "../norman/index.js"
 import gallery from "./gallery.js";
 import price from "./price.js";
 import title from "./title.js";
 
 function build_template(details) {
-    let breadcrumbs_html = breadcrumbs.build_breadcrumbs(details.crumbs)
     let gallery_html = gallery.build_gallery(details.images)
     let title_html = title.build_title_and_reviews(details)
     let price_html = price.build_price(details.prices)
     return `<div class="pah156-layout-pdp">
-        ${breadcrumbs_html}
         ${gallery_html}
         ${title_html}
         ${price_html}
@@ -20,7 +17,6 @@ function build_template(details) {
 
 function get_details() {
     return {
-        crumbs: [],
         images: gallery.get_images(),
         title: title.get_title(),
         brand: title.get_brand(),
@@ -29,70 +25,50 @@ function get_details() {
     }
 }
 
-function init() {
-    console.timeLog("Variation 1 Run Time")
-    console.log("Variation action start")
-    norman.core.log("Variation 1")
-    norman.core.track(Variant.name, "Loaded", true)
-    norman.core.log("Getting details")
+function variant_actions() {
+    log("Variation 1")
+    track(Variant.name, "Loaded", true)
+    log("Getting details")
     let details = get_details()
-    norman.core.log({
+    log({
         msg: "Details scraped",
         details
     })
-    norman.core.log("Building template")
+    log("Building template")
     let element = build_template(details)
-    norman.core.log({
+    log({
         msg: "Template built",
         element
     })
     let targetSel = ".layout-pdp"
     let meth = "beforeBegin"
-    norman.core.log(`Checking if "${targetSel}" exists`)
-    if(norman.core.elementManagement.exists(targetSel)) {
-        norman.core.log(`Inserting template "${meth}" "${targetSel}"`)
-        norman.core.elementManagement.add(element, meth, targetSel)
+    log(`Checking if "${targetSel}" exists`)
+    if(elementManagement.exists(targetSel)) {
+        log(`Inserting template "${meth}" "${targetSel}"`)
+        elementManagement.add(element, meth, targetSel)
         gallery.init_swiper()
         title.watch_reviews()
     }
-    console.log("Variation action complete")
-    console.timeEnd("Variation 1 Run Time")
 }
 
-console.log("Time Start")
-console.time("Variation 1 Run Time")
-console.timeLog("Variation 1 Run Time")
 const Variant = {
     name: "Variation 1",
     css: variationCSS,
     conditions: () => {
-        console.log("Variation condition check")
-        console.timeLog("Variation 1 Run Time")
-        console.time("norman exists test")
-        let a = norman.core.elementManagement.exists(`.pdp-heading-ratings__title`)
-        console.timeEnd("norman exists test")
-        console.time("doc.qs exists test")
-        let b = !!document.querySelector(`.pdp-heading-ratings__title`)
-        console.timeEnd("doc.qs exists test")
-        console.log(a, b)
         let conditions = []
         // Check for product title
-        conditions.push(norman.core.elementManagement.exists(`.pdp-heading-ratings__title`))
+        conditions.push(elementManagement.exists(`.pdp-heading-ratings__title`))
         // Check for product star rating
-        conditions.push(norman.core.elementManagement.exists(`[onclick="ui.scrollTo('#pr-review-snapshot');"]`))
+        conditions.push(elementManagement.exists(`[onclick="ui.scrollTo('#pr-review-snapshot');"]`))
         // Check for product price
-        conditions.push(norman.core.elementManagement.exists(`[data-module="pdp_price"]`))
-        norman.core.log({message: `Polling: Conditions`, conditions})
+        conditions.push(elementManagement.exists(`[data-module="pdp_price"]`))
+        log({message: `Polling: Conditions`, conditions})
         let result = conditions.every(a => a)
-        norman.core.log({message: `Polling: Result`, result})
+        log({message: `Polling: Result`, result})
         return result
     },
-    actions: init,
+    actions: variant_actions,
 }
 
-console.log("Norman Initialised")
-console.timeLog("Variation 1 Run Time")
-let nVariant = norman.init(Variant)
-console.log("nVariant.run()")
-console.timeLog("Variation 1 Run Time")
+let nVariant = init(Variant)
 nVariant.run()
