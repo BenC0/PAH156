@@ -57,6 +57,21 @@ body.pah156_loaded {
                     transition: width .35s cubic-bezier(0.57, -0.01, 0.29, 1.46);
                 }
             }
+
+            & .close {
+                display: none;
+                
+                &[zoom="true"] {
+                    display: block;
+                }
+            }
+            & .zoom {
+                display: none;
+                
+                &[zoom="false"] {
+                    display: block;
+                }
+            }
         }
 
         & .pah156-title-container {
