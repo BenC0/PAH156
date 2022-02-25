@@ -40,6 +40,17 @@ export function build_gallery(images) {
     </div>`
 }
 
+export function toggle_zoom() {
+    let parent_sel =  ".pah156-image-gallery"
+    let parent = elementManagement.get(parent_sel)
+    if(parent.length !== 0) {
+        parent = parent.pop()
+        let current_zoom_status = parent.getAttribute("zoom")
+        let new_status = current_zoom_status == "false"
+        parent.setAttribute("zoom", new_status)
+    }
+}
+
 export function get_images() {
     log(`Getting product images`)
     let images_selector = "#pdp-full-image"
@@ -117,6 +128,9 @@ export function init_swiper() {
         }
     });
     update_progress_bar()
+    elementManagement.get(".pah156-image-gallery .zoom, .pah156-image-gallery .close").forEach(el => {
+        el.addEventListener('click', toggle_zoom)
+    })
     return g
 }
 
