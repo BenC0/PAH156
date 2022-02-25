@@ -10,15 +10,22 @@ export function build_gallery(images) {
     let htmlStr = ``
     images.forEach(img => htmlStr += build_image_str(img))
     return `<div class="pah156-image-gallery" zoom="false" images="${images.length}">
-        <div class="swiper-wrapper"> ${htmlStr} </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper"> ${htmlStr} </div>
+        </div>
         <div class="pah156-progress-bar">
             <div class="indicator"></div>
         </div>
-        <div class="close">
-            <svg class="close_icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.496031 0.495727C0.712989 0.278769 1.06475 0.278769 1.28171 0.495727L13.5039 12.7179C13.7209 12.9349 13.7209 13.2867 13.5039 13.5036C13.287 13.7206 12.9352 13.7206 12.7183 13.5036L0.496031 1.2814C0.279073 1.06444 0.279073 0.712684 0.496031 0.495727Z" fill="#2A2A2A"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.496031 13.5036C0.279073 13.2867 0.279073 12.9349 0.496031 12.7179L12.7183 0.495726C12.9352 0.278768 13.287 0.278768 13.5039 0.495726C13.7209 0.712685 13.7209 1.06444 13.5039 1.2814L1.28171 13.5036C1.06475 13.7206 0.712989 13.7206 0.496031 13.5036Z" fill="#2A2A2A"/>
-            </svg>
+        <div class="zoom-wrapper">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="site-logo__svg" viewBox="0 0 50 50"><path d="M5 0h40c2.8 0 5 2.2 5 5v40c0 2.8-2.2 5-5 5H5c-2.8 0-5-2.2-5-5V5c0-2.8 2.2-5 5-5z" fill="#54b947"></path><path d="M11.3 17.7c-.7 0-1.3.4-1.9 1.1v4.1c.5.2.8.3 1.5.3 1.1 0 2-.9 2-3 .1-1.7-.6-2.5-1.6-2.5zm-5.2-2.8H9l.2 1.4c.8-.8 1.7-1.7 3.1-1.7 2.2 0 3.9 1.7 3.9 5.4 0 4.1-2.2 5.8-4.6 5.8-.8 0-1.5-.1-2.3-.4v3.1l-3.3.6c.1.1.1-14.2.1-14.2zm16 2c-.9 0-1.6.8-1.7 2.5h3.4c-.1-1.7-.7-2.5-1.7-2.5zm4.8 4.3h-6.5c.2 1.7 1.2 2.4 2.7 2.4 1.2 0 2.4-.4 3.6-1.1l.3 2.3c-1.2.8-2.6 1.2-4.3 1.2-3.3 0-5.6-1.7-5.6-5.6 0-3.5 2.2-5.7 5.1-5.7 3.3 0 4.8 2.5 4.8 5.6 0 .4 0 .7-.1.9zm5.8 4.7c-2.3 0-3.9-.8-3.9-3.6v-4.7h-1.4v-2.7h1.4v-3.2l3.3-.5v3.7h2.5v2.7h-2.5v4.1c0 .9.4 1.3 1.3 1.3.3 0 .6 0 .8-.1l.4 2.7c-.5.3-1 .3-1.9.3m7.1.1c-1.7 0-3.3-.5-4.5-1.1l.4-2.5c1.3.8 2.9 1.3 4.1 1.3.9 0 1.4-.3 1.4-.8 0-.6-.3-.8-1.8-1.2-2.7-.7-3.9-1.4-3.9-3.5 0-2 1.5-3.4 4.2-3.4 1.5 0 2.9.3 4 .8l-.4 2.5c-1.2-.6-2.5-1-3.6-1-.8 0-1.2.3-1.2.7 0 .4.3.7 1.8 1.1 2.9.8 3.9 1.5 3.9 3.5.1 2.3-1.5 3.6-4.4 3.6" fill="#fffffe"></path><path d="M9.6 33.4c-1.2.2-1.5.6-1.5 1.1 0 .4.2.6.6.6.3 0 .7-.2 1-.4-.1-.1-.1-1.3-.1-1.3zm.2 2.8l-.1-.7c-.5.5-1 .8-1.8.8-.9 0-1.6-.6-1.6-1.6 0-1.4 1-2 3.3-2.2v-.1c0-.5-.3-.7-.9-.7-.6 0-1.3.2-1.9.4l-.2-1.3c.7-.3 1.5-.5 2.4-.4 1.6 0 2.4.5 2.4 2v3.9l-1.6-.1zm4.7.1c-1.2 0-2.1-.5-2.1-1.9v-2.5h-.8v-1.5h.8v-1.8l1.8-.3v2.1h1.3v1.5h-1.3v2.2c0 .5.2.7.7.7.2 0 .3 0 .4-.1l.2 1.5c-.2 0-.5.1-1 .1m7.1-.1v-3.6c0-.4-.2-.7-.6-.7-.3 0-.7.2-1 .5v3.8h-1.8v-8.6l1.8-.3v3.8c.5-.5 1-.8 1.7-.8 1.1 0 1.6.7 1.6 1.8v4.1h-1.7m5-4.4c-.7 0-1.1.6-1.1 1.5s.4 1.6 1.1 1.6c.7 0 1.1-.6 1.1-1.6s-.4-1.6-1.1-1.5zm0 4.5c-1.6 0-2.8-1.1-2.8-3s1.2-3 2.8-3c1.6 0 2.8 1.2 2.8 3 0 1.9-1.2 3-2.8 3zm9.8-.1v-3.6c0-.4-.2-.7-.6-.7-.3 0-.6.2-.9.5v3.8h-1.8v-3.6c0-.4-.2-.7-.6-.7-.3 0-.6.2-.9.5v3.8h-1.8v-5.8h1.6l.1.8c.5-.5 1.1-.9 1.8-.9.8 0 1.2.4 1.4.9.5-.5 1.1-.9 1.8-.9 1.1 0 1.6.7 1.6 1.8v4.1h-1.7m4.9-4.8c-.5 0-.8.4-.9 1.3h1.8c0-.8-.4-1.3-.9-1.3zm2.6 2.3h-3.5c.1.9.6 1.3 1.4 1.3.6 0 1.3-.2 1.9-.6l.2 1.3c-.6.4-1.4.7-2.3.7-1.7 0-3-.9-3-3 0-1.9 1.2-3 2.7-3 1.8 0 2.6 1.3 2.6 3v.3z" fill="#165830"></path></svg>
+            </div>
+            <div class="close">
+                <svg class="close_icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.496031 0.495727C0.712989 0.278769 1.06475 0.278769 1.28171 0.495727L13.5039 12.7179C13.7209 12.9349 13.7209 13.2867 13.5039 13.5036C13.287 13.7206 12.9352 13.7206 12.7183 13.5036L0.496031 1.2814C0.279073 1.06444 0.279073 0.712684 0.496031 0.495727Z" fill="#2A2A2A"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.496031 13.5036C0.279073 13.2867 0.279073 12.9349 0.496031 12.7179L12.7183 0.495726C12.9352 0.278768 13.287 0.278768 13.5039 0.495726C13.7209 0.712685 13.7209 1.06444 13.5039 1.2814L1.28171 13.5036C1.06475 13.7206 0.712989 13.7206 0.496031 13.5036Z" fill="#2A2A2A"/>
+                </svg>
+            </div>
         </div>
         <div class="zoom">
             <svg class="zoom_icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +43,6 @@ export function build_gallery(images) {
                 </defs>
             </svg>
         </div>
-
     </div>`
 }
 
@@ -48,6 +54,9 @@ export function toggle_zoom() {
         let current_zoom_status = parent.getAttribute("zoom")
         let new_status = current_zoom_status == "false"
         parent.setAttribute("zoom", new_status)
+        elementManagement.get("html, body").forEach(el => {
+            el.style.overflow = new_status ? "hidden" : "auto"
+        })
     }
 }
 
@@ -116,7 +125,7 @@ export function update_progress_bar() {
 }
 
 export function init_swiper() {
-    let gallery_container_selector = ".pah156-image-gallery"
+    let gallery_container_selector = ".pah156-image-gallery .swiper-container"
     log(`Initialising Swiper on ${gallery_container_selector}`)
     let g = new Swiper(gallery_container_selector, {
         speed: 500,
@@ -127,10 +136,15 @@ export function init_swiper() {
             slideChange: update_progress_bar,
         }
     });
-    update_progress_bar()
     elementManagement.get(".pah156-image-gallery .zoom, .pah156-image-gallery .close").forEach(el => {
-        el.addEventListener('click', toggle_zoom)
+        el.addEventListener('click', _ => {
+            toggle_zoom()
+            g.update()
+        })
     })
+    if(elementManagement.getAll('.swiper-slide').length < 1) {
+        update_progress_bar()
+    }
     return g
 }
 
