@@ -54,17 +54,17 @@ export function update_progress_bar() {
         slide_gap = parseFloat(slide_gap)
         
         let total_slide_width = slide_width + slide_gap
-        let max_width = total_slide_width * slides.length
+        let max_width = total_slide_width * (slides.length + 1)
 
         let wrapper = elementManagement.get(wrapper_selector).pop()
         let wrapper_transform = wrapper.style.transform
         let wrapper_transform_values = wrapper_transform.match(/[0-9]*px/g)
         let wrapper_transform_x = wrapper_transform_values[0]
         wrapper_transform_x = wrapper_transform_x.replace(/[a-z]/g, '')
-        let current_offset = parseFloat(wrapper_transform_x)
+        let current_offset = parseFloat(wrapper_transform_x) + total_slide_width
 
         if (current_offset <= 0) {
-            current_offset = total_slide_width / 10
+            current_offset = total_slide_width
         }
 
         let indicator = elementManagement.get(indicator_selector).pop()
