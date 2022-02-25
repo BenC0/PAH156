@@ -7,8 +7,10 @@ export function build_price(prices) {
     })
     return `<div class="pah156-price" price_type="${prices.type}">
         <p class="saving">${prices.saving}</p>
-        <p class="now">${prices.now}</p>
-        <p class="was">${prices.was}</p>
+        <div class="main_price">
+            <p class="now">${prices.now}</p>
+            <p class="was">${prices.was}</p>
+        </div>
         <p class="normalised">${prices.normalised}</p>
     </div>`
 }
@@ -38,9 +40,9 @@ export function get_prices() {
     log(`Getting product prices`)
     let prices = {
         type: get_type(),
-        now: check_and_get_price("#offerPrice"),
-        was: check_and_get_price(".pdp-price__was"),
-        saving: check_and_get_price(".pdp-price__you-save"),
+        now: check_and_get_price("#offerPrice, #erOfferPrice"),
+        was: check_and_get_price(".pdp-price__was").replace(/Was /g, ""),
+        saving: check_and_get_price(".pdp-price__you-save, #checkout-combo__offer-text-er"),
         normalised: check_and_get_price(".pdp-price__weight"),
     }
     return prices

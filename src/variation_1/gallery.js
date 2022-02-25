@@ -9,7 +9,7 @@ export function build_gallery(images) {
     log(`Building new product image gallery element`)
     let htmlStr = ``
     images.forEach(img => htmlStr += build_image_str(img))
-    return `<div class="pah156-image-gallery">
+    return `<div class="pah156-image-gallery" images="${images.length}">
         <div class="swiper-wrapper"> ${htmlStr} </div>
         <div class="pah156-progress-bar">
             <div class="indicator"></div>
