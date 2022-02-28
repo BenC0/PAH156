@@ -48,7 +48,7 @@ export function hotjar_impression_event(variant) {
  */
 export default function track(variant, action, impression = false) {
     pushToDataLayer(variant, action, impression)
-	if(impression) {
+	if(impression && config.tracking.hotjar.heatmaps) {
 		hotjar_impression_event(variant)
 	}
 }
