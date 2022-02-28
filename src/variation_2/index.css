@@ -1,6 +1,11 @@
 .pah .pah156_loaded,
 body.pah156_loaded {
     & .layout-pdp {
+        --red: #CE2010;
+        --green: #54b947;
+        --purple: #5b378b;
+        --dark-green: #00551c;
+        
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
@@ -15,6 +20,78 @@ body.pah156_loaded {
         
         & [data-module="pdp_price"] {
             order: 2;
+        }
+
+        & .pah156-price {
+            order: 3;
+            width: 100%;
+            padding: 0 .625rem .625rem;
+
+            font-size: 32px;
+            font-family: "Museo", sans-serif;
+            
+            display: grid;
+            grid-row-gap: .25em;
+            grid-column-gap: .25em;
+            grid-template-rows: repeat(2, auto);
+            grid-template-columns: repeat(3, auto);
+
+            & .saving {
+                grid-row: 1;
+                font-size: 0.5em;
+                grid-column: 1 / span 3;
+                
+                &:empty {
+                    display: none;
+                }
+            }
+
+            &[price_type="sale"] {
+                & .now,
+                & .saving {
+                    color: var(--red);
+                }
+            }
+
+            &[price_type="easy-repeat"] {
+                & .now,
+                & .saving {
+                    color: var(--purple);
+                }
+            }
+
+            & .main_price,
+            & .normalised {
+                grid-row: 2;
+            }
+            & .main_price {
+                display: flex;
+                align-items: flex-start;
+                grid-column: 1 / span 2;
+                justify-content: flex-start;
+            }
+
+            & .now {
+                font-size: 1em;
+                font-weight: bold;
+                margin-right: .3ch;
+                display: inline-block;
+            }
+            
+            & .was {
+                color: #B2B2B2;
+                font-size: .625em;
+                text-decoration: line-through;
+            }
+
+            & .normalised {
+                color: #737373;
+                grid-column: 3;
+                font-size: 0.5em;
+                display: inline-flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+            }
         }
     }
 }

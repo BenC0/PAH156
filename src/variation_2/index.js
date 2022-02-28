@@ -1,9 +1,14 @@
 import variationCSS from "./index.css";
 import norman from "../norman/index.js"
+import price from "./price.js"
 
 function init() {
     norman.core.log("Variation 2")
     norman.core.track(Variant.name, "Loaded", true)
+    let prices = price.get_prices()
+    let price_html = price.build_price(prices)
+    let layoutPdp = norman.core.elementManagement.get('.layout-pdp').pop()
+    norman.core.elementManagement.add(price_html, "beforeEnd", layoutPdp) 
 }
 
 const Variant = {
