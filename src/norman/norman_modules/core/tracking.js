@@ -32,6 +32,15 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 }
 
 /**
+ * Function for sending a hotjar impression evnet
+ * @param {string} variant Variation ID/Name 
+ */
+export function hotjar_impression_event(variant) {
+	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+	window.hj('event', `${config.id}-${variant}`);
+}
+
+/**
  * Shorthand/alias function for tracking events 
  * @param {string} variant Variation ID/Name
  * @param {string} action Event action to be tracked
@@ -39,4 +48,7 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
  */
 export default function track(variant, action, impression = false) {
     pushToDataLayer(variant, action, impression)
+	if(impression) {
+		hotjar_impression_event(variant)
+	}
 }

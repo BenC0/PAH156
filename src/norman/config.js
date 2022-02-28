@@ -5,6 +5,9 @@ export const config = {
     "tracking": {
         "google_analytics": {
             "dimension": 22
+        },
+        "hotjar": {
+            "heatmaps": true
         }
     }
 }
