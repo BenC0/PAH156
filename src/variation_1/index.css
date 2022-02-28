@@ -60,6 +60,9 @@ body.pah156_loaded {
                 grid-row: 2;
                 grid-column: 2;
 
+                z-index: 3;
+                position: relative;
+
                 margin-top: 1em;
                 background: #E3E3E3;
                 width: var(--slide-size);
@@ -84,12 +87,13 @@ body.pah156_loaded {
                 position: fixed;
                 overflow: hidden;
 
+                justify-content: flex-end;
                 background: #fff;
 
                 padding: 1em;
 
                 & .logo {
-                    flex-grow: 1;
+                    display: none;
                 }
             }
             
@@ -97,6 +101,9 @@ body.pah156_loaded {
                 grid-row: 1;
                 grid-column: 3;
                 display: none;
+
+                z-index: 5;
+                position: relative;
             }
 
             &[zoom="false"] {
@@ -158,11 +165,11 @@ body.pah156_loaded {
                     }
                 } 
 
-                &[score="4"] svg:nth-child(4) ~ svg path,
-                &[score="3"] svg:nth-child(3) ~ svg path,
-                &[score="2"] svg:nth-child(2) ~ svg path,
-                &[score="1"] svg:nth-child(1) ~ svg path,
-                &[score="0"] svg path {
+                &[score^="4"] svg:nth-child(4) ~ svg path,
+                &[score^="3"] svg:nth-child(3) ~ svg path,
+                &[score^="2"] svg:nth-child(2) ~ svg path,
+                &[score^="1"] svg:nth-child(1) ~ svg path,
+                &[score^="0"] svg path {
                     fill: #737373;
                 }
             }

@@ -70,6 +70,7 @@ export {
 	poll,
 	track,
 	cookie,
+	config,
 	debounce,
 	isInViewport,
 	registerTest,

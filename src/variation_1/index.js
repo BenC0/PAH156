@@ -1,5 +1,5 @@
 import variationCSS from "./index.css";
-import {init, log, track, elementManagement} from "../norman/index.js"
+import {config, init, log, track, elementManagement} from "../norman/index.js"
 import gallery from "./gallery.js";
 import price from "./price.js";
 import title from "./title.js";
@@ -15,6 +15,14 @@ function build_template(details) {
     </div>`
 }
 
+export function clear_template() {
+    if(elementManagement.exists('.pah156-layout-pdp')) {
+        let template = elementManagement.get('.pah156-layout-pdp', false)
+        console.log({template})
+        template.forEach(e => e.remove())
+    }
+}
+
 function get_details() {
     return {
         images: gallery.get_images(),
@@ -26,6 +34,7 @@ function get_details() {
 }
 
 function variant_actions() {
+    clear_template()
     log("Variation 1")
     track(Variant.name, "Loaded", true)
     log("Getting details")

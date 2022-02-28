@@ -7,7 +7,7 @@ export function build_reviews(reviews, brand = "") {
     let brand_str = brand == "" ? "" : `by<b>&nbsp;${brand}</b>`
     return `<div class="pah156-reviews">
         ${brand_str}
-        <div class="pah156-reviews-rating">
+        <div class="pah156-reviews-rating" onclick="ui.scrollTo('#pr-review-snapshot');">
             <div class="stars" score="${reviews.rating}">
                 ${star_svg}
                 ${star_svg}

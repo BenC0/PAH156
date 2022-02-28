@@ -134,6 +134,7 @@ export function init_swiper() {
         on: {
             // sliderMove: update_progress_bar,
             slideChange: update_progress_bar,
+            update: update_progress_bar,
         }
     });
     elementManagement.get(".pah156-image-gallery .zoom, .pah156-image-gallery .close").forEach(el => {
