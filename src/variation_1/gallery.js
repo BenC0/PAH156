@@ -1,4 +1,4 @@
-import {log, elementManagement} from "../norman"
+import {log, elementManagement, track} from "../norman"
 
 export function build_image_str(img) {
     log(`Building new product image element`)
@@ -56,6 +56,7 @@ export function toggle_zoom() {
         parent.setAttribute("zoom", new_status)
         elementManagement.get("html, body").forEach(el => {
             el.style.overflow = new_status ? "hidden" : "auto"
+            track("Variation 1", `Zoom ${new_status ? "Open" : "Close"}`, false)
         })
     }
 }
@@ -121,6 +122,7 @@ export function update_progress_bar() {
             total_slide_width,
             current_offset,
         })
+        track("Variation 1", `Gallery Image Engagement`, false)
     }
 }
 

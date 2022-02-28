@@ -1,7 +1,7 @@
 # TODO
-1. Implement Zoom Event Tracking
-2. Implement Gallery Event Tracking
-3. Exclude Flea Products
+1. Implement Reviews Star Event Tracking
+2. Exclude Flea Products
+3. Create Control
 
 Standard Product - https://www.petsathome.com/shop/en/pets/wainwrights-complete-dry-puppy-food-lamb-and-brown-rice-2kg
 
