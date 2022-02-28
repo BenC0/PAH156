@@ -57,6 +57,7 @@ function variant_actions() {
         elementManagement.add(element, meth, targetSel)
         gallery.init_swiper()
         title.watch_reviews()
+        title.track_star_engagement("Variation 1")
     }
 }
 

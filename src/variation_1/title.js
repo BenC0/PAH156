@@ -1,4 +1,4 @@
-import {elementManagement, log, watchForChange} from "../norman"
+import {elementManagement, log, watchForChange, track} from "../norman"
 
 export function build_reviews(reviews, brand = "") {
     log(`Building new product reviews element`)
@@ -94,13 +94,20 @@ export function get_brand() {
     return !!window.googleFirstBasketItemImpression ? window.googleFirstBasketItemImpression.brand || "" : ""
 }
 
+export function track_star_engagement(variation) {
+    elementManagement.get(`[onclick="ui.scrollTo('#pr-review-snapshot');"]`, true).forEach(el => el.addEventListener("click", _ => {
+        track(variation, "Reviews Star Engagement", false)
+    }))
+}
+
 export const title = {
     get_brand,
     get_title,
-    get_reviews,
-    watch_reviews,
     build_title,
+    get_reviews,
     build_reviews,
+    watch_reviews,
+    track_star_engagement,
     build_title_and_reviews,
 }
 

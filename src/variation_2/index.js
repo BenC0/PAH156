@@ -9,6 +9,10 @@ function init() {
     let price_html = price.build_price(prices)
     let layoutPdp = norman.core.elementManagement.get('.layout-pdp').pop()
     norman.core.elementManagement.add(price_html, "beforeEnd", layoutPdp) 
+    
+    norman.core.elementManagement.get(`[onclick="ui.scrollTo('#pr-review-snapshot');"]`, true).forEach(el => el.addEventListener("click", _ => {
+        track("Variation 2", "Reviews Star Engagement", false)
+    }))
 }
 
 const Variant = {
