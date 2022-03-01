@@ -11,8 +11,14 @@ function init() {
     norman.core.elementManagement.add(price_html, "beforeEnd", layoutPdp) 
     
     norman.core.elementManagement.get(`[onclick="ui.scrollTo('#pr-review-snapshot');"]`, true).forEach(el => el.addEventListener("click", _ => {
-        track("Variation 2", "Reviews Star Engagement", false)
+        norman.core.track("Variation 2", "Reviews Star Engagement", false)
     }))
+
+    norman.core.elementManagement.get(".scroller__wrapper").forEach(el => {
+        el.addEventListener("touchend", _ => {
+            norman.core.track("Variation 2", `Gallery Image Engagement`, false)
+        })
+    })
 }
 
 const Variant = {
