@@ -1,5 +1,5 @@
 import config from "../../config.js"
-import log from "../core/log"
+import log from "./log.js"
 /**
  * Function to push events to dataLayer
  * @param {string} variant Variation ID/Name
