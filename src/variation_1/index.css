@@ -181,7 +181,7 @@ body.pah156_loaded {
             }
         }
 
-        & .pah156-price {
+        & .pah156-price .pricing {
             width: 100%;
             font-size: 1.6em;
 
@@ -247,10 +247,6 @@ body.pah156_loaded {
                 align-items: flex-end;
                 justify-content: flex-end;
             }
-        }
-
-        & + .layout-pdp {
-            display: none;
         }
     }
 }

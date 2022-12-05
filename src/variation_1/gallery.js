@@ -84,6 +84,7 @@ export function update_progress_bar() {
     if (elementManagement.exists(indicator_selector)
     && elementManagement.exists(wrapper_selector)
     && elementManagement.exists(slide_selector)
+    && elementManagement.getAll('.swiper-slide').length > 1
     ) {
         let slides = elementManagement.get(slide_selector, true)
         let last_slide = slides.pop()
@@ -145,7 +146,7 @@ export function init_swiper() {
             g.update()
         })
     })
-    if(elementManagement.getAll('.swiper-slide').length < 1) {
+    if(elementManagement.getAll('.swiper-slide').length > 1) {
         update_progress_bar()
     }
     return g
